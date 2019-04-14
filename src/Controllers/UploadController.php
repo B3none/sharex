@@ -38,7 +38,7 @@ class UploadController
         }
 
         if ($secret == \Config::$secret) {
-            $fileName = $this->fileNameHelper->generateFileName();
+            $fileName = $this->fileNameHelper->generateFileName() . '.' . $image->getExtension();
 
             $url = \Config::$url;
             if ($url[strlen($url) - 1] !== '/') {
@@ -51,6 +51,7 @@ class UploadController
                 return;
             }
 
+            // Output the URL
             echo $url . $fileName;
 
             return;
