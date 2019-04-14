@@ -29,9 +29,12 @@ class UploadController
     public function postIndex(): void
     {
         $requestData = input()->all();
+        $image = input()->file('image');
 
         if (!in_array('secret', $requestData)) {
             $this->errorHelper->unauthorised();
+
+            return;
         }
 
         if ($requestData['secret'] === \Config::$secret) {
@@ -40,6 +43,12 @@ class UploadController
             $url = \Config::$url;
             if ($url[strlen($url) - 1] !== '/') {
                 $url .= '/';
+            }
+
+            if (!move_uploaded_file($image['tmpName'], __DIR__ . '/../../web/' . $fileName)) {
+                $this->errorHelper->directoryPermissions();
+
+                return;
             }
 
             echo $url . $fileName;

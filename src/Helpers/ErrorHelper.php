@@ -16,4 +16,13 @@ class ErrorHelper
             'error' => 'Invalid secret'
         ]);
     }
+
+    public function directoryPermissions(): void
+    {
+        header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+
+        echo json_encode([
+            'error' => 'Missing directory permissions. Does the directory have 777 permissions?'
+        ]);
+    }
 }
