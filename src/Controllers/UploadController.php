@@ -6,6 +6,9 @@ use B3none\ShareX\Helpers\FileNameHelper;
 
 class UploadController
 {
+    /**
+     * @var FileNameHelper
+     */
     protected $fileNameHelper;
 
     public function __construct()
