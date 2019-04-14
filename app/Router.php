@@ -43,7 +43,7 @@ class Router
 
         // Handle 404 errors by falling back to the main site.
         SimpleRouter::error(function(Request $request, \Exception $exception) {
-            response()->redirect('https://b3none.co.uk');
+            response()->redirect(Config::$error_url);
         });
     }
 }

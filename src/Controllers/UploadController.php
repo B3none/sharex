@@ -23,10 +23,21 @@ class UploadController
     {
         $requestData = input()->all();
 
-        if ($requestData['key'] === \Config::$secret) {
+        if ($requestData['secret'] === \Config::$secret) {
             $fileName = $this->fileNameHelper->generateFileName();
+
+            $url = \Config::$url;
+            if ($url[strlen($url) - 1] !== '/') {
+                $url .= '/';
+            }
+
+            echo json_encode([
+                'URL' => $url . $fileName
+            ]);
 
             return;
         }
+
+        header('Location: ' . \Config::$error_url);
     }
 }
