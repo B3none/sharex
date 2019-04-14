@@ -16,14 +16,20 @@ try {
      */
     (new Router())->initialiseRoutes();
 } catch (\B3none\ShareX\Exceptions\InvalidSecretException $e) {
+    header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+
     echo json_encode([
         'error' => $e->getMessage()
     ]);
 } catch (\B3none\ShareX\Exceptions\InvalidUrlException $e) {
+    header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+
     echo json_encode([
         'error' => $e->getMessage()
     ]);
 } catch (\B3none\ShareX\Exceptions\InvalidErrorUrlException $e) {
+    header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+
     echo json_encode([
         'error' => $e->getMessage()
     ]);

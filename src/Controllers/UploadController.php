@@ -2,6 +2,7 @@
 
 namespace B3none\ShareX\Controllers;
 
+use B3none\ShareX\Helpers\ErrorHelper;
 use B3none\ShareX\Helpers\FileNameHelper;
 
 class UploadController
@@ -11,9 +12,15 @@ class UploadController
      */
     protected $fileNameHelper;
 
+    /**
+     * @var ErrorHelper
+     */
+    protected $errorHelper;
+
     public function __construct()
     {
         $this->fileNameHelper = new FileNameHelper();
+        $this->errorHelper = new ErrorHelper();
     }
 
     /**
@@ -22,6 +29,10 @@ class UploadController
     public function postIndex(): void
     {
         $requestData = input()->all();
+
+        if (!in_array('secret', $requestData)) {
+            $this->errorHelper->unauthorised();
+        }
 
         if ($requestData['secret'] === \Config::$secret) {
             $fileName = $this->fileNameHelper->generateFileName();
@@ -38,6 +49,6 @@ class UploadController
             return;
         }
 
-        header('Location: ' . \Config::$error_url);
+        $this->errorHelper->unauthorised();
     }
 }
