@@ -10,7 +10,7 @@ if (!file_exists(__DIR__ . "/../app/config.php")) {
         file_get_contents(__DIR__ . "/../app/config.example.php")
     );
 
-    // unlink(__DIR__ . "/../app/config.example.php");
+    unlink(__DIR__ . "/../app/config.example.php");
 }
 require __DIR__ . "/../app/config.php";
 
