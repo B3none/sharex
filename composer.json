@@ -7,5 +7,13 @@
       "homepage": "https://github.com/b3none"
     }
   ],
-  "require": {}
+  "autoload": {
+    "psr-4": {
+      "B3none\\ShareX\\": "src/"
+    }
+  },
+  "require": {
+    "pecee/simple-router": "4.2.0.6",
+    "ext-json": "*"
+  }
 }
