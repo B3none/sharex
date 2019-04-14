@@ -1,6 +1,6 @@
 <?php
 
-class Config
+class Configs
 {
     /**
      * Something you should generate and not share.
