@@ -3,6 +3,13 @@
 require __DIR__ . "/../vendor/autoload.php";
 require __DIR__ . "/../vendor/pecee/simple-router/helpers.php";
 require __DIR__ . "/../app/Router.php";
+
+if (!file_exists(__DIR__ . "/../app/config.php")) {
+    file_put_contents(
+        __DIR__ . "/../app/config.php",
+        file_get_contents(__DIR__ . "/../app/config.example.php")
+    );
+}
 require __DIR__ . "/../app/config.php";
 
 try {

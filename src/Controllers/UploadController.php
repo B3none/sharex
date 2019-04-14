@@ -42,9 +42,7 @@ class UploadController
                 $url .= '/';
             }
 
-            echo json_encode([
-                'URL' => $url . $fileName
-            ]);
+            echo $url . $fileName;
 
             return;
         }
